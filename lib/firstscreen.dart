@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hifashion/custom_button.dart';
+
 
 class firstscreen extends StatefulWidget {
   const firstscreen({super.key});
@@ -9,9 +9,35 @@ class firstscreen extends StatefulWidget {
 }
 
 class _firstscreenState extends State<firstscreen> {
+  late TextEditingController firstnameC, lastnameC, emailC, phoneC;
+   @override
+  void initState() {
+    firstnameC = TextEditingController();
+    lastnameC = TextEditingController();
+    emailC = TextEditingController();
+    phoneC = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    firstnameC.dispose();
+    lastnameC.dispose();
+    emailC.dispose();
+    phoneC.dispose();
+   
+    super.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+          child: ListView(
+            children: const [],
+          ),
+        ),
         appBar: AppBar(
           centerTitle: true,
           title: Text('HIfashion'),
@@ -67,52 +93,27 @@ class _firstscreenState extends State<firstscreen> {
                 ),
               ),
               SizedBox(height: 16.0),
-              Row(
-                children: [
-                  CircleAvatar(
-                    radius: 50.0,
-                    backgroundImage: NetworkImage(
-                        'https://example.com/image.jpg'),
-                    child: Column(
-                      
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      
-                      children: [
-                       Text(
-                          
-                          'Open fashion',
-                          
-                          style: TextStyle(color: Colors.black),
-                        ), 
-                        
-                       
-                      ],
-                      
-                    ),
-                  ),
-                  SizedBox(width: 16.0),
-                  Spacer(),
-                  IconButton(
-                    
-                    icon: Icon(Icons.upload),
-                    onPressed: () {
-                      
-                    },
-                  ),
-                ],
+              ListTile(
+                leading: CircleAvatar(),
+                title: const Text('Open fashion'),
+                trailing: Icon(Icons.more_vert),
               ),
               
               SizedBox(height: 16.0),
               TextField(
+                controller: firstnameC,
                 decoration: InputDecoration(labelText: 'First Name'),
               ),
               TextField(
+                controller: lastnameC,
                 decoration: InputDecoration(labelText: 'Last Name'),
               ),
               TextField(
+                controller: emailC,
                 decoration: InputDecoration(labelText: 'Email'),
               ),
               TextField(
+                controller: phoneC,
                 decoration: InputDecoration(labelText: 'Phone Number'),
               ),
               Spacer(),
